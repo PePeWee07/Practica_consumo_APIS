@@ -1,0 +1,565 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Name: {{pokeName}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="pokemon"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<!-- Tarjeta -->
+<ion-card *ngFor="let poke of pokeRegister" class="ion-text-center">
+  
+  <!-- mysthic or lendedary -->
+  <div class="class-poke">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <div class="legend" *ngIf="legend == true">
+            <ion-img src="../../assets/icon/legendPoke.png"></ion-img>
+            <h6 style="margin-top: -5px;"> Legendary</h6>
+          </div>
+        </ion-col>
+        <ion-col size="12">
+          <div class="mysthic" *ngIf="mysthic == true">
+            <ion-img src="../../assets/icon/mysthicPoke.png"></ion-img>
+            <h6 style="margin-top: -0px;"> Mythical</h6>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- IMG pokemon -->
+  <div class="img-poke">
+    <img class="circular--square" src="{{poke.sprites.front_default}}" />
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button color="danger">
+        <ion-icon name="star"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+      <!-- modal photos -->
+      <button id="open-modal" class="btn-modal  modal-1">
+        <ion-icon name="images"></ion-icon>
+      </button>
+  
+      <ion-modal #modal trigger="open-modal">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-title>Images</ion-title>
+              <ion-buttons slot="end">
+                <ion-button color="light" (click)="modal.dismiss()">
+                  <ion-icon name="close-circle-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <!-- imagenes -->
+            <div *ngFor="let poke of pokeRegister" class="ion-text-center">
+              <ion-label style="margin-top: 10px;">Back Defalut</ion-label>
+              <div class="center">
+                <ion-img class="circular--square" style="width:150px; height:150px;" src="{{poke.sprites.back_default}}"></ion-img>
+              </div>
+              <ion-label style="margin-top: 10px;">Front Defalut</ion-label>
+              <div class="center">
+                <ion-img class="circular--square center" style="width:150px; height:150px;" src="{{poke.sprites.front_default}}"></ion-img>
+              </div>
+              <ion-label style="margin-top: 10px;">Back Shiny</ion-label>
+              <div class="center">
+                <ion-img class="circular--square center" style="width:150px; height:150px;" src="{{poke.sprites.back_shiny}}"></ion-img>
+              </div>
+              <ion-label style="margin-top: 10px;">Front Shiny</ion-label>
+              <div class="center">
+                <ion-img class="circular--square center" style="width:150px; height:150px;" src="{{poke.sprites.front_shiny}}"></ion-img>
+              </div>
+              <!-- Otros -->
+              <ion-label style="margin-top: 10px;">Pokemon Home Defalut</ion-label>
+              <div class="center">
+                <ion-img class="circular--square center" style="width:150px; height:150px;" src="{{poke.sprites.other.home.front_default}}"></ion-img>
+              </div>
+              <ion-label style="margin-top: 10px;">Pokemon Home Shiny</ion-label>
+              <div class="center">
+                <ion-img class="circular--square center" style="width:150px; height:150px;" src="{{poke.sprites.other.home.front_shiny}}"></ion-img>
+              </div>
+              <ion-label style="margin-top: 10px;">Official Art</ion-label>
+              <div class="center">
+                <ion-img class="circular--square center" style="width:150px; height:150px;" src='{{poke.sprites.other["official-artwork"].front_default}}'></ion-img>
+              </div>
+            </div>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <!-- modal info -->
+      <button id="open-modal2" class="btn-modal modal-2">
+        <ion-icon name="information" style="width: 15px; height: 15px; position: absolute; margin-top: -7px; margin-left: -7px;"></ion-icon>
+      </button>
+
+      <ion-modal #modal2 trigger="open-modal2">
+        <ng-template>
+          <ion-content>
+            <ion-toolbar>
+              <ion-title>Description</ion-title>
+              <ion-buttons slot="end">
+                <ion-button color="light" (click)="modal2.dismiss()">
+                  <ion-icon name="close-circle-outline"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <!-- Descripcion pokemon y habitad -->
+            <div  *ngFor="let des of pokeDescription">
+                    <!-- habitad -->
+                    <ion-item lines="none">
+                      <ion-grid style="margin-top: 3.5rem;">
+                        <ion-row>
+                          <ion-col size="12">
+                            <ion-label class="ion-text-center"><h2>It's habitat is the:</h2></ion-label>
+                          </ion-col>
+                          <ion-col size="12">
+                            <ion-label class="ion-text-center"><h1 style="color: yellow;">{{pokeHabitat}}</h1></ion-label>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-item>
+                    <!-- descripcion -->
+                    <ion-item>
+                      <ion-grid style="margin-top: 3.5rem;">
+                        <ion-row>
+                          <ion-col size="12" class="ion-text-center">
+                            <ion-label style="position: absolute; margin-left: 35%;"><h2>Description:</h2></ion-label>
+                          </ion-col>
+                          <ion-col size="12" style="margin-top: 1.5rem;">
+                            <ion-textarea class="ion-text-center" disable="true" style="color: yellow;">
+                              {{txtDescription}}
+                            </ion-textarea>
+                          </ion-col>
+                        </ion-row>
+                      </ion-grid>
+                    </ion-item>
+            </div>
+            <!-- desventajas y ventajas -->
+            <div *ngFor="let tp of typeRelations">
+              <ion-item lines="none">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col size="12" class="ion-text-center"><h1>FIRST TYPE</h1></ion-col>
+                    <ion-col size="12" class="ion-text-center"><h4 style="color: blue;">DEFENSE</h4></ion-col>
+                    <ion-col size="12">
+                      <ion-accordion-group [multiple]="true" [value]="['first']">
+                        <ion-accordion value="first" toggleIcon="caret-down-circle" toggleIconSlot="start" >
+                          <ion-item slot="header" color="rose">
+                            <ion-label>Move Damage Class:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let tp of typeRelations">
+                            <h2>{{tp.move_damage_class.name}}</h2>
+                            <div class="dmg-inflicted-by"><ion-icon name="help-circle-outline" (click)="infoTypes()"></ion-icon></div>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="second" toggleIcon="caret-down-circle" toggleIconSlot="start" >
+                          <ion-item slot="header" color="light">
+                            <ion-label>Double Damage From:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let twoDmgFrom of doubleDamageFrom">
+                            <h5 class="dmg-info">{{twoDmgFrom}}</h5>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="third" toggleIcon="caret-down-circle" toggleIconSlot="start">
+                          <ion-item slot="header" color="light">
+                            <ion-label>Half Damage From</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let halfDmgFrom of halfDamageFrom">
+                            <h5>{{halfDmgFrom}}</h5>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="fourth" toggleIcon="caret-down-circle" toggleIconSlot="start">
+                          <ion-item slot="header" color="light">
+                            <ion-label>No Damage From:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let noDmgFrom of noDamageFrom">
+                            <h5>{{noDmgFrom}}</h5>
+                          </div>
+                        </ion-accordion>
+                      </ion-accordion-group>
+                    </ion-col>
+                    <ion-col size="12" class="ion-text-center"><h4 style="color: red;">ATTACK</h4></ion-col>
+                    <ion-col size="12">
+                      <ion-accordion-group [multiple]="true">
+                        <ion-accordion value="first" toggleIcon="caret-down-circle" toggleIconSlot="start" >
+                          <ion-item slot="header" color="light">
+                            <ion-label>Double Damage To:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let twoDmgTo of doubleDamageTo">
+                            <h5 class="dmg-info">{{twoDmgTo}}</h5>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="second" toggleIcon="caret-down-circle" toggleIconSlot="start">
+                          <ion-item slot="header" color="light">
+                            <ion-label>Half Damage To:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let halfDmgTo of halfDamageTo">
+                            <h5>{{halfDmgTo}}</h5>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="third" toggleIcon="caret-down-circle" toggleIconSlot="start">
+                          <ion-item slot="header" color="light">
+                            <ion-label>No Damage To:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let noDmgTo of noDamageTo">
+                            <h5>{{noDmgTo}}</h5>
+                          </div>
+                        </ion-accordion>
+                      </ion-accordion-group>
+                    </ion-col>
+
+                    <ion-col size="12" class="ion-text-center"  *ngIf="hiddem_type2 ==  true"><h1>SECOND TYPE</h1></ion-col>
+                    <ion-col size="12" class="ion-text-center" *ngIf="hiddem_type2 ==  true"><h4 style="color: blue;">DEFENSE</h4></ion-col>
+                    <ion-col size="12" *ngIf="hiddem_type2 ==  true">
+                      <ion-accordion-group [multiple]="true" [value]="['first']" >
+                        <ion-accordion value="first" toggleIcon="caret-down-circle" toggleIconSlot="start" >
+                          <ion-item slot="header" color="rose">
+                            <ion-label>Move Damage Class:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let tp2 of typeRelations2">
+                            <h2>{{tp2.move_damage_class.name}}</h2>
+                            <div class="dmg-inflicted-by"><ion-icon name="help-circle-outline" (click)="infoTypes()"></ion-icon></div>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="second" toggleIcon="caret-down-circle" toggleIconSlot="start" >
+                          <ion-item slot="header" color="light">
+                            <ion-label>Double Damage From:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let twoDmgFrom2 of doubleDamageFrom2">
+                            <h5 class="dmg-info">{{twoDmgFrom2}}</h5>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="third" toggleIcon="caret-down-circle" toggleIconSlot="start">
+                          <ion-item slot="header" color="light">
+                            <ion-label>Half Damage From</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let halfDmgFrom2 of halfDamageFrom2">
+                            <h5>{{halfDmgFrom2}}</h5>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="fourth" toggleIcon="caret-down-circle" toggleIconSlot="start">
+                          <ion-item slot="header" color="light">
+                            <ion-label>No Damage From:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let noDmgFrom2 of noDamageFrom2">
+                            <h5>{{noDmgFrom2}}</h5>
+                          </div>
+                        </ion-accordion>
+                      </ion-accordion-group>
+                    </ion-col>
+                    <ion-col size="12" class="ion-text-center" *ngIf="hiddem_type2 ==  true"><h4 style="color: red;">ATTACK</h4></ion-col>
+                    <ion-col size="12" *ngIf="hiddem_type2 ==  true">
+                      <ion-accordion-group [multiple]="true">
+                        <ion-accordion value="first" toggleIcon="caret-down-circle" toggleIconSlot="start" >
+                          <ion-item slot="header" color="light">
+                            <ion-label>Double Damage To:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let twoDmgTo2 of doubleDamageTo2">
+                            <h5 class="dmg-info">{{twoDmgTo2}}</h5>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="second" toggleIcon="caret-down-circle" toggleIconSlot="start">
+                          <ion-item slot="header" color="light">
+                            <ion-label>Half Damage To:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let halfDmgTo2 of halfDamageTo2">
+                            <h5>{{halfDmgTo2}}</h5>
+                          </div>
+                        </ion-accordion>
+                        <ion-accordion value="third" toggleIcon="caret-down-circle" toggleIconSlot="start">
+                          <ion-item slot="header" color="light">
+                            <ion-label>No Damage To:</ion-label>
+                          </ion-item>
+                          <div class="ion-padding" slot="content" *ngFor="let noDmgTo2 of noDamageTo2">
+                            <h5>{{noDmgTo2}}</h5>
+                          </div>
+                        </ion-accordion>
+                      </ion-accordion-group>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </ion-item>
+            </div>
+
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+  <ion-card-header>
+    <ion-card-title>{{pokeName}}</ion-card-title>
+    <ion-card-subtitle>Experience: {{poke.base_experience}} PX</ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">Height: {{pokeHeight}} M</ion-col>
+        <ion-col size="6">Weight: {{pokeWeight}} KG</ion-col>
+        <ion-col size="2">Type:</ion-col>
+
+        <!-- first type -->
+        <ion-col  size="5" *ngIf="pokeType[0] == 'grass' ">
+          <div class="type-poke grass" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'fire' ">
+          <div class="type-poke fire" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'poison' ">
+          <div class="type-poke poison" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'bug' ">
+          <div class="type-poke bug" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'ghost' ">
+          <div class="type-poke ghost" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'dark' ">
+          <div class="type-poke dark" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'fighting' ">
+          <div class="type-poke fighting" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'psychic' ">
+          <div class="type-poke psychic" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'electric' ">
+          <div class="type-poke electric" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'ground' ">
+          <div class="type-poke ground" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'rock' ">
+          <div class="type-poke rock" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'steel' ">
+          <div class="type-poke steel" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'water' ">
+          <div class="type-poke water" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'ice' ">
+          <div class="type-poke ice" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'dragon' ">
+          <div class="type-poke dragon" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'fairy' ">
+          <div class="type-poke fairy" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'flying' ">
+          <div class="type-poke flying" >{{pokeType[0]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="pokeType[0] == 'normal' ">
+          <div class="type-poke normal" >{{pokeType[0]}}</div>
+        </ion-col>
+
+        <!-- second type -->
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'grass'">
+          <div class="type-poke grass">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'fire'">
+          <div class="type-poke fire">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'poison'">
+          <div class="type-poke poison">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'bug'">
+          <div class="type-poke bug">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'ghost'">
+          <div class="type-poke ghost">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'dark'">
+          <div class="type-poke dark">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'fighting'">
+          <div class="type-poke fighting">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'psychic'">
+          <div class="type-poke psychic">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'electric'">
+          <div class="type-poke electric">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'ground'">
+          <div class="type-poke ground">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'rock'">
+          <div class="type-poke rock">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'steel'">
+          <div class="type-poke steel">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'water'">
+          <div class="type-poke water">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'ice'">
+          <div class="type-poke ice">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'dragon'">
+          <div class="type-poke dragon">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'fairy'">
+          <div class="type-poke fairy">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'flying'">
+          <div class="type-poke flying">{{pokeType[1]}}</div>
+        </ion-col>
+        <ion-col  size="5" *ngIf="hiddem_type == true && pokeType[1] == 'normal'">
+          <div class="type-poke normal">{{pokeType[1]}}</div>
+        </ion-col>
+
+        <ion-col size="12" >
+          <ion-accordion-group>
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-label>Abilitys</ion-label>
+              </ion-item>
+              <div *ngFor="let abil of pokeAbility" class="ion-padding" slot="content">
+                {{abil}}
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+        </ion-col>
+        <ion-col>
+          <ion-accordion-group>
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-label>Moves</ion-label>
+              </ion-item>
+              <div *ngFor="let move of pokeMoves" class="ion-padding" slot="content">
+                {{move}}
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+        </ion-col>
+        <ion-col>
+          <ion-accordion-group>
+            <ion-accordion value="first">
+              <ion-item slot="header" color="light">
+                <ion-label>Stats</ion-label>
+              </ion-item>
+              <div *ngFor="let stats of pokeStat" class="ion-padding" slot="content">
+                {{stats}}
+              </div>
+            </ion-accordion>
+          </ion-accordion-group>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-content>
+</ion-card>
+
+
+<!-- INFO DE POKEMON
+  <pre *ngFor="let poke of pokeRegister; index as i">
+  ID: {{poke.id}}
+  NAME: {{poke.name}}
+  IMG: {{poke.sprites.front_default}}
+  ABILITIE1: {{poke.abilities[0].ability.name}}
+  ABILITIE2: {{poke.abilities[1].ability.name}}
+  EXPERIENCE: {{poke.base_experience}}
+  HEIGHT: {{poke.height}}
+  WEIGHT: {{poke.weight}}
+  <pre *ngFor="let move of pokeMoves">
+    MOVIMIENTOS:
+    {{move}}
+  </pre>
+  <pre *ngFor="let stat of pokeStat">
+    STATS:
+    {{stat}}
+  </pre>
+</pre> -->
+
+<!-- INFO DE desc-pokemon + habita + Leg + mysth
+<pre *ngFor="let des of pokeDescription">
+  LEGENDARY:{{des.is_legendary}}
+  MYTHICAL:{{des.is_mythical}}
+  HABITAT:{{des.habitat.name}}
+  DESCRIPTION:{{txtDescription}}
+</pre> -->
+
+<!-- TIPO DE EFECTOS DE DAÑO
+<pre *ngFor="let tp of typeRelations">
+  MOVE DAMANGE CLASS:{{tp.move_damage_class.name}}
+
+  <h1>******DEFENSA*****</h1>
+  <h1>RECIVO MUCHO DAÑO</h1>
+  <pre *ngFor="let twoDmgFrom of doubleDamageFrom">
+    DOUBLE DAMANGE FROM:{{twoDmgFrom}}
+  </pre>
+
+  <h1>RECIVO POCO DAÑO</h1>
+  <pre *ngFor="let halfDmgFrom of halfDamageFrom">
+    HALF DAMANGE FROM:{{halfDmgFrom}}
+  </pre>
+
+  <h1>NO RECIVO DAÑO</h1>
+  <pre *ngFor="let noDmgFrom of noDamageFrom">
+    NO DAMANGE FROM:{{noDmgFrom}}
+  </pre>
+
+
+
+  <h1>******ATAK*****</h1>
+  <h1>REALIZO MUCHO DAÑO</h1>
+  <pre *ngFor="let twoDmgTo of doubleDamageTo">
+    DOUBLE DAMANGE TO:{{twoDmgTo}}
+  </pre>
+
+  <h1>REALIZO POCO DAÑO</h1>
+  <pre *ngFor="let halfDmgTo of halfDamageTo">
+    HALF DAMANGE TO:{{halfDmgTo}}
+  </pre>
+
+  <h1>NO REALIZO DAÑO</h1>
+  <pre *ngFor="let noDmgTo of noDamageTo">
+    NO DAMANGE TO:{{noDmgTo}}
+  </pre>
+</pre>
+
+<h1>-----SIGUIENTE TIPO DE HABILIDAD-------</h1>
+
+<pre *ngFor="let tp2 of typeRelations2">
+  MOVE DAMANGE CLASS:{{tp2.move_damage_class.name}}
+
+   <h1>******DEFENSA*****</h1>
+  <h1>RECIVO MUCHO DAÑO</h1>
+  <pre *ngFor="let twoDmgFrom2 of doubleDamageFrom2">
+    DOUBLE DAMANGE FROM:{{twoDmgFrom2}}
+  </pre>
+
+  <h1>RECIVO POCO DAÑO</h1>
+  <pre *ngFor="let halfDmgFrom2 of halfDamageFrom2">
+    HALF DAMANGE FROM:{{halfDmgFrom2}}
+  </pre>
+
+  <h1>NO RECIVO DAÑO</h1>
+  <pre *ngFor="let noDmgFrom2 of noDamageFrom2">
+    NO DAMANGE FROM:{{noDmgFrom2}}
+  </pre>
+  
+  <h1>******ATAK*****</h1>
+  <h1>REALIZO MUCHO DAÑO</h1>
+  <pre *ngFor="let twoDmgTo2 of doubleDamageTo2">
+    DOUBLE DAMANGE TO:{{twoDmgTo2}}
+  </pre>
+
+  <h1>REALIZO POCO DAÑO</h1>
+  <pre *ngFor="let halfDmgTo2 of halfDamageTo2">
+    HALF DAMANGE TO:{{halfDmgTo2}}
+  </pre>
+
+  <h1>NO REALIZO DAÑO</h1>
+  <pre *ngFor="let noDmgTo2 of noDamageTo2">
+    NO DAMANGE TO:{{noDmgTo2}}
+  </pre>
+</pre> -->
+
+
+</ion-content>

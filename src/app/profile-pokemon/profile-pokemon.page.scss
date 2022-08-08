@@ -1,0 +1,202 @@
+ion-accordion {
+  margin: 0 auto;
+}
+
+ion-accordion.accordion-expanding,
+ion-accordion.accordion-expanded {
+  width: calc(100% - 10px);
+
+  margin: 16px auto;
+}
+
+ion-accordion.accordion-collapsing ion-item[slot="header"],
+ion-accordion.accordion-collapsed ion-item[slot="header"] {
+  --background: var(--ion-color-light);
+  --color: var(--ion-color-light-contrast);
+}
+
+ion-accordion.accordion-expanding ion-item[slot="header"],
+ion-accordion.accordion-expanded ion-item[slot="header"] {
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-primary-contrast);
+}
+
+
+ion-modal {
+  --height: 50%;
+  --border-radius: 16px;
+  --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: rgb(14 116 144);
+  --color: white;
+}
+
+
+.circular--square {
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+  background-color: #8D99AE;
+  border: 2px solid #2B2D42;
+}
+
+.img-poke {
+  margin-top: 20px;
+}
+
+.center {
+  margin-top: 5px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-card {
+  margin-top: 3rem;
+  border-radius: 30px;
+  border: 3px solid #D90429;
+  background: url("http://cdn.animalhi.com/1920x1080/20121029/pokemon%20minimalistic%20dark%20poke%20balls%201920x1080%20wallpaper_www.animalhi.com_55.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.modal-1 {
+  position: absolute;
+  background-color: #EF233C;
+  border-radius: 50px;
+  margin-left: 20px;
+  margin-top: -110px;
+  padding: 10px;
+}
+
+.modal-2 {
+  position: absolute;
+  background-color: #237bef;
+  border-radius: 50px;
+  margin-left: -50px;
+  margin-top: -30px;
+  padding: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+.type-poke {
+  // background-color: #8D99AE;
+  // color: white;
+  border-radius: 30px;
+  padding: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grass{
+  background-color: 	#99FF66;
+  color: black;
+}
+.fire{
+  background-color: 	#FF7F00;
+  color: white;
+}
+.poison{
+  background-color: 	#CC88BB;
+  color: white;
+}
+.bug{
+background-color: 	#99CC33;
+  color: black;
+}
+.ghost{
+ background-color: 	#778899;
+  color: white; 
+}
+.dark{
+  background-color: 	#A9A9A9;
+  color: white;
+}
+.fighting{
+  background-color: 	#FF6A6A;
+  color: white;
+}
+.psychic{
+  background-color: 	#FFB5C5;
+  color: black;
+}
+.electric{
+  background-color: 	#FFD700;
+  color: black;
+}
+.ground{
+  background-color: 	#DEB887;
+  color: black;
+}
+.rock{
+ background-color: 	#CD853F;
+  color: white; 
+}
+.steel{
+ background-color: 	#CCCCCC;
+  color: black; 
+}
+.water{
+  background-color: 	#B0E2FF;
+  color: black;
+}
+.ice{
+ background-color: 	#ADD8E6;
+  color: black; 
+}
+.dragon{
+ background-color: 	#AB82FF;
+  color: white; 
+}
+.fairy{
+  background-color: 	#FFB0FF;
+  color: black;
+}
+.flying{
+ background-color: 	#BAAAFF;
+  color: black; 
+}
+.normal{
+ background-color: 	#DDCCAA;
+  color: black; 
+}
+
+
+.type-poke:first-letter {
+  text-transform: uppercase;
+}
+
+.class-poke{
+  position: absolute;
+  margin-top: 10px;
+}
+.legend{
+  // background-color: #efec23;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  max-width: 80px;
+}
+.mysthic{
+  margin-top: 10px;
+  margin-left: 10px;
+  // background-color: #ef5223;
+  max-width: 80px;
+}
+.dmg-inflicted-by{
+  // position: absolute;
+  // display: flex;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: -2rem;
+}

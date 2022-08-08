@@ -10,6 +10,22 @@ const routes: Routes = [
   {
     path: 'folder/:id',
     loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
+  },
+  {
+    path: 'pokemon',
+    loadChildren: () => import('./pokemon/pokemon.module').then( m => m.PokemonPageModule)
+  },
+  {
+    path: 'rick-and-morty',
+    loadChildren: () => import('./rick-and-morty/rick-and-morty.module').then( m => m.RickAndMortyPageModule)
+  },
+  {
+    path: 'profile/:id',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'profile-pokemon/:id',
+    loadChildren: () => import('./profile-pokemon/profile-pokemon.module').then( m => m.ProfilePokemonPageModule)
   }
 ];
 

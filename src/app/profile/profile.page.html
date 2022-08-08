@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Profile</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="rick-and-morty"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <ion-card *ngFor="let char of charter" class="ion-text-center">
+    <img src="{{char.image}}" />
+    <ion-card-header>
+      <ion-card-subtitle>Status: {{char.status}}</ion-card-subtitle>
+      <ion-card-title>Name: {{char.name}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>Species: {{char.species}}</ion-label><br>
+      <ion-label>Gender: {{char.gender}}</ion-label><br>
+      <!-- <ion-label>Origin: {{origin}}</ion-label><br> -->
+      <ion-label>Origin: {{char.origin.name}}</ion-label><br>
+      <ion-label>Location: {{char.location.name}}</ion-label>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
